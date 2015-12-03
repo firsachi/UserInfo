@@ -22,9 +22,7 @@ import toolsgui.UkrainianNameButton;
  *
  * @author firsov
  */
-public class DialogDepartment {
-    
-    private final JDialog dialogDeaprtment;
+public class DialogDepartment extends JDialog{
     
     private JLabel labelName;
     private JTextField textFieldNameDepartment;
@@ -36,20 +34,19 @@ public class DialogDepartment {
     private JButton buttonCansel;
     
     public DialogDepartment() {
-        dialogDeaprtment = new JDialog();
         configComponent = new UkrainianNameButton();
         configDialog();
     }
     
     private void configDialog(){
-        dialogDeaprtment.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialogDeaprtment.setModal(true);
-        dialogDeaprtment.add(createContentPanel(), BorderLayout.CENTER);
-        dialogDeaprtment.add(createButtonPanel(), BorderLayout.SOUTH);
-        dialogDeaprtment.pack();
-        dialogDeaprtment.setLocationRelativeTo(null);
-        dialogDeaprtment.setResizable(false);
-        dialogDeaprtment.setVisible(true);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setModal(true);
+        add(createContentPanel(), BorderLayout.CENTER);
+        add(createButtonPanel(), BorderLayout.SOUTH);
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
     }
 
     private JPanel createContentPanel() {
@@ -80,7 +77,7 @@ public class DialogDepartment {
 
     private JButton createButtonCansel() {
         buttonCansel = new JButton(configComponent.nameButtonCansel());
-        buttonCansel.addActionListener(new ButtonCanselActionListener(dialogDeaprtment));
+        buttonCansel.addActionListener(new ButtonCanselActionListener((JDialog) this));
         return buttonCansel;
     }
     
