@@ -7,10 +7,8 @@ package userinfo.gui;
 
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.PopupMenu;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
