@@ -5,6 +5,8 @@
  */
 package userinfo;
 
+import userinfo.gui.DialogLogin;
+
 /**
  *
  * @author firsov
@@ -15,7 +17,7 @@ public class UserInfo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        DialogLogin dialogLogin = new DialogLogin();
     }
     
 }
