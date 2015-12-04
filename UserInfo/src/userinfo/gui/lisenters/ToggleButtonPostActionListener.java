@@ -26,7 +26,8 @@ public class ToggleButtonPostActionListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         FillTableModel filltable = new FillTableModel();
-        filltable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.POST);
+        filltable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.POST, false);
+        frameUserInfo.selectRowTable();
     }
     
 }
