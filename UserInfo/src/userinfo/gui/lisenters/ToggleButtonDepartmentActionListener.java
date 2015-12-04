@@ -26,7 +26,8 @@ public class ToggleButtonDepartmentActionListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         FillTableModel fillTable = new FillTableModel();
-        fillTable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.DEPARTMENT);
+        fillTable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.DEPARTMENT, false);
+        frameUserInfo.selectRowTable();
     }
     
 }
