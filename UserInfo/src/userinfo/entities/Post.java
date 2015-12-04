@@ -41,8 +41,8 @@ public class Post implements RowEntities{
     }
 
     @Override
-    public String[] getRow() {
-        String[] row = new String[]{Integer.toString(postID), postName};
-        return row;
+    public Object[] getRow() {
+        String[] rowData = new String[]{Integer.toString(postID), postName};
+        return rowData;
     }
 }

@@ -6,10 +6,10 @@ import java.util.Map;
 /**
  * Created by firsov on 12.09.15.
  */
-public class Users {
+public class Users implements RowEntities{
 
-    private String[] nameComponent={"idUsers","nameUsers","surnameUser","patronymicUsers","loginUsers","passwordUser","emailUsers","departmentUsers","postUsers"};
-    private Map userMap=new HashMap<String, String>();
+    private final String[] nameComponent={"idUsers","nameUsers","surnameUser","patronymicUsers","loginUsers","passwordUser","emailUsers","departmentUsers","postUsers"};
+    private final Map userMap=new HashMap<String, String>();
 
     public Users(){
         for (String value:nameComponent){
@@ -78,6 +78,21 @@ public class Users {
 
     public String getString(int index){
         return nameComponent[index];
+    }
+
+    @Override
+    public Object[] getRow() {
+        Object[] rowData = new Object[]{
+            userMap.get(nameComponent[0]), 
+            userMap.get(nameComponent[2]) + " " + userMap.get(nameComponent[1]) + " " + userMap.get(nameComponent[3]),
+            userMap.get(nameComponent[4]), 
+            userMap.get(nameComponent[5]), 
+            userMap.get(nameComponent[6]),
+            userMap.get(nameComponent[7]), 
+            userMap.get(nameComponent[8])
+        };
+        
+        return rowData;
     }
 
 }

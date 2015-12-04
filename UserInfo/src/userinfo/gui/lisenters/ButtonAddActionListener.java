@@ -8,27 +8,24 @@ package userinfo.gui.lisenters;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import userinfo.gui.FrameUserInfo;
-import userinfo.gui.frameuser.EnumNameModel;
-import userinfo.gui.frameuser.tablemodel.FillTableModel;
+import userinfo.gui.strategyadd.StrategyAdd;
 
 /**
  *
  * @author firsov
  */
-public class ToggleButtonDepartmentActionListener implements ActionListener{
+public class ButtonAddActionListener implements ActionListener{
     
     private final FrameUserInfo frameUserInfo;
     
-    public ToggleButtonDepartmentActionListener(FrameUserInfo frameUserInfo) {
+    public ButtonAddActionListener(FrameUserInfo frameUserInfo) {
         this.frameUserInfo = frameUserInfo;
-        this.frameUserInfo.setNameModel(EnumNameModel.DEPARTMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        FillTableModel fillTable = new FillTableModel();
-        fillTable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.DEPARTMENT, false);
-        frameUserInfo.selectRowTable();
+        StrategyAdd strategyAdd = new StrategyAdd();
+        strategyAdd.result(frameUserInfo.getTableModelFrame(), frameUserInfo.getNameModel());
     }
     
 }

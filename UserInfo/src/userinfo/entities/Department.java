@@ -8,10 +8,6 @@ public class Department implements RowEntities{
     private int idDepartment;
     private String departmentName;
 
-    public Department(){
-        this.idDepartment=0;
-    }
-
     public void setIdDepartment(int idDepartment){
         this.idDepartment=idDepartment;
     }
@@ -29,8 +25,8 @@ public class Department implements RowEntities{
     }
 
     @Override
-    public String[] getRow() {
-        String[] row = new String[]{Integer.toString(idDepartment), departmentName};
-        return row;
+    public Object[] getRow() {
+        Object[] rowData = new Object[]{idDepartment, departmentName};
+        return rowData;
     }
 }

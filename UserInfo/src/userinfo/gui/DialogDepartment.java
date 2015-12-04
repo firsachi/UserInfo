@@ -17,12 +17,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import toolsgui.ConfigComponentsGUI;
 import toolsgui.UkrainianNameButton;
+import userinfo.entities.Department;
 
 /**
  *
  * @author firsov
  */
 public class DialogDepartment extends JDialog{
+    
+    private Department department;
     
     private JLabel labelName;
     private JTextField textFieldNameDepartment;
@@ -72,6 +75,7 @@ public class DialogDepartment extends JDialog{
 
     private JButton createButtonOk() {
         buttonOk = new JButton(configComponent.nameButtonOk());
+        buttonOk.addActionListener(new DialogDepartmentButtonOkActionListener(this));
         return buttonOk;
     }
 
@@ -80,5 +84,8 @@ public class DialogDepartment extends JDialog{
         buttonCansel.addActionListener(new ButtonCanselActionListener((JDialog) this));
         return buttonCansel;
     }
-    
+
+    public Department getDepartment() {
+        return department;
+    }
 }

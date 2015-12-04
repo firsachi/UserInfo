@@ -11,5 +11,5 @@ package userinfo.entities;
  */
 public interface RowEntities {
     
-    String[] getRow();
+    Object[] getRow();
 }

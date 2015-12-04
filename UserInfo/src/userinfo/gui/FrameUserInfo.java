@@ -22,6 +22,8 @@ import javax.swing.JToggleButton;
 import userinfo.gui.frameuser.EnumNameModel;
 import userinfo.gui.frameuser.tablemodel.FillTableModel;
 import userinfo.gui.frameuser.tablemodel.TableModel;
+import userinfo.gui.lisenters.ButtonAddActionListener;
+import userinfo.gui.lisenters.ToggleButtonDepartmentActionListener;
 import userinfo.gui.lisenters.ToggleButtonPostActionListener;
 import userinfo.gui.lisenters.ToggleButtonUserActionListener;
 
@@ -34,6 +36,7 @@ public class FrameUserInfo extends JFrame{
     private final int contentPanelBorderSize = 12;
     
     private final ConfigFrameUserInfo settings;
+    private EnumNameModel nameModel;
     
     private JButton buttonAdd;
     private JButton buttonDelete;
@@ -84,6 +87,7 @@ public class FrameUserInfo extends JFrame{
 
     private JButton createButtonAdd() {
         buttonAdd = new JButton(settings.nameButtonAdd());
+        buttonAdd.addActionListener(new ButtonAddActionListener(this));
         return buttonAdd;
     }
 
@@ -100,7 +104,7 @@ public class FrameUserInfo extends JFrame{
     private JScrollPane createPanelTable() {
         tableModelFrame = new TableModel();
         FillTableModel fillTableModel = new FillTableModel();
-        fillTableModel.fillTable(tableModelFrame, EnumNameModel.USER);
+        fillTableModel.fillTable(tableModelFrame, EnumNameModel.USER, false);
         tableFrame = new JTable(tableModelFrame);
         selectRowTable();
         JScrollPane scrollPaneTable = new JScrollPane(tableFrame);
@@ -140,17 +144,26 @@ public class FrameUserInfo extends JFrame{
 
     private void createToggleButtonDepartment() {
         toggleButtonDepartment = new JToggleButton(settings.nameToggleButtonDeaprtment());
+        toggleButtonDepartment.addActionListener(new ToggleButtonDepartmentActionListener(this));
         selectRowTable();
     }
 
-    private void selectRowTable() {
+    public void selectRowTable() {
         if (tableModelFrame.getRowCount() > 0){
             tableFrame.setRowSelectionInterval(0, 0);
         }
     }
+
+    public void setNameModel(EnumNameModel nameModel) {
+        this.nameModel = nameModel;
+    }
     
     public TableModel getTableModelFrame() {
         return tableModelFrame;
+    }
+
+    public EnumNameModel getNameModel() {
+        return nameModel;
     }
     
 }
