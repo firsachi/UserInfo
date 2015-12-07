@@ -21,13 +21,13 @@ public class ToggleButtonDepartmentActionListener implements ActionListener{
     
     public ToggleButtonDepartmentActionListener(FrameUserInfo frameUserInfo) {
         this.frameUserInfo = frameUserInfo;
-        this.frameUserInfo.setNameModel(EnumNameModel.DEPARTMENT);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        frameUserInfo.setNameModel(EnumNameModel.DEPARTMENT);
         FillTableModel fillTable = new FillTableModel();
-        fillTable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.DEPARTMENT, false);
+        fillTable.fillTable(frameUserInfo.getTableModelFrame(), frameUserInfo.getNameModel(), false);
         frameUserInfo.selectRowTable();
     }
     

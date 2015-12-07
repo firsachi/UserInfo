@@ -5,11 +5,13 @@
  */
 package userinfo.gui.strategyadd;
 
+import userinfo.entities.RowEntities;
+
 /**
  *
  * @author firsov
  */
 public interface ButtonAddStartegy {
     
-    Object[] add();
+    RowEntities add();
 }

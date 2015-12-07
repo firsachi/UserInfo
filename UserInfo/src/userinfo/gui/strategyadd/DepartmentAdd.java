@@ -1,5 +1,6 @@
 package userinfo.gui.strategyadd;
 
+import userinfo.entities.RowEntities;
 import userinfo.gui.DialogDepartment;
 
 /**
@@ -11,9 +12,9 @@ public class DepartmentAdd implements ButtonAddStartegy{
     private  final String title = "Новий відділ.";
 
     @Override
-    public Object[] add() {
+    public RowEntities add() {
         DialogDepartment dialogDepartment = new DialogDepartment();
         dialogDepartment.setTitle(title);
-        return dialogDepartment.getDepartment().getRow();
+        return dialogDepartment.getDepartment();
     }
 }

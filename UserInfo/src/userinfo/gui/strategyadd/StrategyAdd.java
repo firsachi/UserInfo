@@ -1,5 +1,6 @@
 package userinfo.gui.strategyadd;
 
+import userinfo.entities.RowEntities;
 import userinfo.gui.frameuser.EnumNameModel;
 import userinfo.gui.frameuser.tablemodel.TableModel;
 
@@ -11,6 +12,8 @@ public class StrategyAdd {
 
     private final ContextStrategyAdd contextStrategyAdd;
     private Object[] resultObjekt;
+    
+    private RowEntities rowEntities;
     
     public StrategyAdd(){
         contextStrategyAdd = new ContextStrategyAdd();
@@ -26,7 +29,7 @@ public class StrategyAdd {
                 break;
             case DEPARTMENT :
                 DepartmentAdd departmentAdd =new DepartmentAdd();
-                resultObjekt = departmentAdd.add();
+                rowEntities = departmentAdd.add();
                 break;
         }
         if (resultObjekt != null){

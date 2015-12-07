@@ -55,7 +55,6 @@ public class FrameUserInfo extends JFrame{
     }
     
     private void configFrame(){
-        setName(EnumNameModel.USER.toString());
         setDefaultCloseOperation(FrameUserInfo.DISPOSE_ON_CLOSE);
         add(createPanelContent(), BorderLayout.CENTER);
         add(createPanelButton(), BorderLayout.SOUTH);
@@ -102,6 +101,7 @@ public class FrameUserInfo extends JFrame{
     }
 
     private JScrollPane createPanelTable() {
+        nameModel = EnumNameModel.USER;
         tableModelFrame = new TableModel();
         FillTableModel fillTableModel = new FillTableModel();
         fillTableModel.fillTable(tableModelFrame, EnumNameModel.USER, false);
@@ -131,7 +131,8 @@ public class FrameUserInfo extends JFrame{
     }
     
     private void createToggleButtonUser(){
-        toggleButtonUser = new JToggleButton(settings.nameToggleButtonUser(), true);
+        toggleButtonUser = new JToggleButton(settings.nameToggleButtonUser());
+        toggleButtonUser.setSelected(true);
         toggleButtonUser.addActionListener(new ToggleButtonUserActionListener(this));
         selectRowTable();
     }
@@ -157,7 +158,7 @@ public class FrameUserInfo extends JFrame{
     public void setNameModel(EnumNameModel nameModel) {
         this.nameModel = nameModel;
     }
-    
+       
     public TableModel getTableModelFrame() {
         return tableModelFrame;
     }
@@ -165,5 +166,7 @@ public class FrameUserInfo extends JFrame{
     public EnumNameModel getNameModel() {
         return nameModel;
     }
+    
+    
     
 }

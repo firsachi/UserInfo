@@ -25,8 +25,9 @@ public class ToggleButtonUserActionListener implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        frameUserInfo.setNameModel(EnumNameModel.USER);
         FillTableModel filltable = new FillTableModel();
-        filltable.fillTable(frameUserInfo.getTableModelFrame(), EnumNameModel.USER, false);
+        filltable.fillTable(frameUserInfo.getTableModelFrame(), frameUserInfo.getNameModel(), false);
         frameUserInfo.selectRowTable();
     }
     

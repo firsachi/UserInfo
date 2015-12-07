@@ -37,6 +37,7 @@ public class DialogDepartment extends JDialog{
     private JButton buttonCansel;
     
     public DialogDepartment() {
+        department = new Department();
         configComponent = new UkrainianNameButton();
         configDialog();
     }
@@ -82,6 +83,7 @@ public class DialogDepartment extends JDialog{
     private JButton createButtonCansel() {
         buttonCansel = new JButton(configComponent.nameButtonCansel());
         buttonCansel.addActionListener(new ButtonCanselActionListener((JDialog) this));
+        department = null;
         return buttonCansel;
     }
 
