@@ -1,5 +1,7 @@
 package userinfo.gui.strategyadd;
 
+import userinfo.entities.RowEntities;
+
 /**
  * Created by firsov on 01.10.2015.
  */
@@ -15,7 +17,7 @@ public class ContextStrategyAdd {
         this.buttonAddStartegy = buttonAddStartegy;
     }
 
-    public Object[] executeNewRow(){
+    public RowEntities executeNewRow(){
         return buttonAddStartegy.add();
     }
 }

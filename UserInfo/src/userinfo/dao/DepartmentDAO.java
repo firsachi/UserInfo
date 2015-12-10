@@ -19,4 +19,5 @@ public interface DepartmentDAO {
     ArrayList<Department> findAll(boolean delete);
     void delete(int idDepartment);
     void update(Department department);
+    public boolean findName(Department department);
 }

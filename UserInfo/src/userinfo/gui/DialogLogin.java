@@ -115,6 +115,7 @@ public class DialogLogin extends JDialog{
 
     private void createButtonOK() {
         buttonOk = new JButton(configComponents.nameButtonOk());
+        buttonOk.setMnemonic('l');
         buttonOk.addActionListener(new LoginDialogButtonOkActionListener(this));
     }
 

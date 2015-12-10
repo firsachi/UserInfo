@@ -22,7 +22,8 @@ class DialogDepartmentButtonOkActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DeaprtmentAdd deaprtmentAdd = new DeaprtmentAdd();
+        deaprtmentAdd.createDepartment(dialogDepartment);
     }
     
 }

@@ -11,7 +11,6 @@ import userinfo.gui.frameuser.tablemodel.TableModel;
 public class StrategyAdd {
 
     private final ContextStrategyAdd contextStrategyAdd;
-    private Object[] resultObjekt;
     
     private RowEntities rowEntities;
     
@@ -32,9 +31,8 @@ public class StrategyAdd {
                 rowEntities = departmentAdd.add();
                 break;
         }
-        if (resultObjekt != null){
-            tableModel.addRow(resultObjekt);
+        if (rowEntities != null){
+            tableModel.addRow(rowEntities.getRow());
         }
     }
-
 }

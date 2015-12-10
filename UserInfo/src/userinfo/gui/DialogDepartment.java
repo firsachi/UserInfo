@@ -27,6 +27,7 @@ public class DialogDepartment extends JDialog{
     
     private Department department;
     
+    private JLabel labelError;
     private JLabel labelName;
     private JTextField textFieldNameDepartment;
     
@@ -45,6 +46,7 @@ public class DialogDepartment extends JDialog{
     private void configDialog(){
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
+        add(createPanelError(), BorderLayout.NORTH);
         add(createContentPanel(), BorderLayout.CENTER);
         add(createButtonPanel(), BorderLayout.SOUTH);
         pack();
@@ -53,9 +55,19 @@ public class DialogDepartment extends JDialog{
         setVisible(true);
     }
 
+    private JPanel createPanelError(){
+        labelError = new JLabel(" ");
+        JPanel panelError = new JPanel();
+        panelError.setLayout(new FlowLayout(FlowLayout.CENTER));
+        panelError.add(labelError);
+        return panelError;
+    }
+    
     private JPanel createContentPanel() {
         labelName = new JLabel("Найменування:");
         textFieldNameDepartment = new JTextField(configComponent.sizeTextField());
+        textFieldNameDepartment.addKeyListener(new TextFiledKeyboardLisenter(this));
+     
         JPanel panelComponent = new JPanel();
         panelComponent.setBorder(BorderFactory.createEmptyBorder(borderSize, borderSize, borderSize, borderSize));
         panelComponent.add(labelName);
@@ -87,6 +99,22 @@ public class DialogDepartment extends JDialog{
         return buttonCansel;
     }
 
+    public String getTextFieldNameDepartment() {
+        return textFieldNameDepartment.getText();
+    }
+
+    public JLabel getLabelName() {
+        return labelName;
+    }
+
+    public JLabel getLabelError() {
+        return labelError;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+    
     public Department getDepartment() {
         return department;
     }

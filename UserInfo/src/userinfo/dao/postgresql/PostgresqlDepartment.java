@@ -38,7 +38,7 @@ public class PostgresqlDepartment implements DepartmentDAO{
         } catch (SQLException ex) {
             Logger.getLogger(PostgresqlDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return this.department;
+        return department;
     }
 
     @Override
@@ -101,6 +101,23 @@ public class PostgresqlDepartment implements DepartmentDAO{
         }
     }
 
+    @Override
+    public boolean findName(Department department){
+        String query = "SELECT COUNT(*) FROM department WHERE name_department=?";
+        boolean resultFind = true;
+        try (PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);) 
+        {
+            preparedStatement.setString(1, department.getDepartmentName());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next() && resultSet.getInt(1)>0){
+                resultFind = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PostgresqlDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultFind;
+    }
+    
     private Department createNewDeaprtment(ResultSet resultSet) {
         department = new Department();
         try {
@@ -111,7 +128,4 @@ public class PostgresqlDepartment implements DepartmentDAO{
         }
         return  department;
     }
-
-    
-    
 }
