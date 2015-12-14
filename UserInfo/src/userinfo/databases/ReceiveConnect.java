@@ -14,7 +14,7 @@ private static Connection connectDataBase;
 	public static Connection getConnectionDatabase(){
 		if(null==connectDataBase){
 			try {
-				connectDataBase= DriverManager.getConnection("jdbc:postgresql://10.0.1.5/user_secyrity", "sa", "1q2w3e4r");
+				connectDataBase= DriverManager.getConnection("jdbc:postgresql://localhost/user_info", "sa", "1q2w3e4r");
 				return connectDataBase;
 			} catch (SQLException e) {
 				e.printStackTrace();
