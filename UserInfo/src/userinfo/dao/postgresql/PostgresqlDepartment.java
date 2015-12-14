@@ -73,18 +73,27 @@ public class PostgresqlDepartment implements DepartmentDAO{
     }
 
     @Override
-    public void delete(int idDepartment) {
-        String query = "UPDATE department SET delete_department=true WHERE id_department=? values";
+    public boolean delete(int idDepartment) {
+        boolean result = false;
+        String query = "UPDATE department SET delete_department=true WHERE id_department=? AND 0=(SELECT COUNT(*) FROM users WHERE id_department=?)";
         try (
-                PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareCall(query);
+                PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);
                 )
         {
+            //prepareCall(query);
             preparedStatement.setInt(1, idDepartment);
-            preparedStatement.executeQuery();
+            preparedStatement.setInt(2, idDepartment);
+            int res = preparedStatement.executeUpdate();
+            System.err.println(res);
+            if(0 == res){
+                result = true;
+                return result;
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(PostgresqlDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     @Override
