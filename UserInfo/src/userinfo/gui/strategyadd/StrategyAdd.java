@@ -9,13 +9,11 @@ import userinfo.gui.frameuser.tablemodel.TableModel;
  */
 
 public class StrategyAdd {
-
-    private final ContextStrategyAdd contextStrategyAdd;
-    
+  
     private RowEntities rowEntities;
     
     public StrategyAdd(){
-        contextStrategyAdd = new ContextStrategyAdd();
+       
     }
     
     public void result( TableModel tableModel, EnumNameModel nameModel){
@@ -27,7 +25,7 @@ public class StrategyAdd {
                 
                 break;
             case DEPARTMENT :
-                DepartmentAdd departmentAdd =new DepartmentAdd();
+                DepartmentAdd departmentAdd = new DepartmentAdd();
                 rowEntities = departmentAdd.add();
                 break;
         }
