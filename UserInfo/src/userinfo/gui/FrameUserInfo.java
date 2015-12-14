@@ -23,6 +23,8 @@ import userinfo.gui.frameuser.EnumNameModel;
 import userinfo.gui.frameuser.tablemodel.FillTableModel;
 import userinfo.gui.frameuser.tablemodel.TableModel;
 import userinfo.gui.lisenters.ButtonAddActionListener;
+import userinfo.gui.lisenters.ButtonDeleteActionListener;
+import userinfo.gui.lisenters.ButtonUpdateActionListener;
 import userinfo.gui.lisenters.ToggleButtonDepartmentActionListener;
 import userinfo.gui.lisenters.ToggleButtonPostActionListener;
 import userinfo.gui.lisenters.ToggleButtonUserActionListener;
@@ -92,11 +94,13 @@ public class FrameUserInfo extends JFrame{
 
     private JButton createButtonDelete() {
         buttonDelete = new JButton(settings.nameButtonDelete());
+        buttonDelete.addActionListener(new ButtonDeleteActionListener(this));
         return buttonDelete;
     }
 
     private JButton createButtonUpdate() {
         buttonUpdate = new JButton(settings.nameButtonUpdate());
+        buttonUpdate.addActionListener(new ButtonUpdateActionListener(this));
         return buttonUpdate;
     }
 
@@ -166,7 +170,9 @@ public class FrameUserInfo extends JFrame{
     public EnumNameModel getNameModel() {
         return nameModel;
     }
-    
-    
+
+    public JTable getTableFrame() {
+        return tableFrame;
+    }
     
 }
