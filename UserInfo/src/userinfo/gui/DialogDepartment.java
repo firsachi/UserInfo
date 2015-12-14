@@ -9,6 +9,7 @@ import userinfo.gui.lisenters.ButtonCanselActionListener;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import javax.print.DocFlavor;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -18,6 +19,7 @@ import javax.swing.JTextField;
 import toolsgui.ConfigComponentsGUI;
 import toolsgui.UkrainianNameButton;
 import userinfo.entities.Department;
+import userinfo.entities.EnumAction;
 
 /**
  *
@@ -26,6 +28,7 @@ import userinfo.entities.Department;
 public class DialogDepartment extends JDialog{
     
     private Department department;
+    private EnumAction action = EnumAction.INSERT;
     
     private JLabel labelError;
     private JLabel labelName;
@@ -37,7 +40,8 @@ public class DialogDepartment extends JDialog{
     private JButton buttonOk;
     private JButton buttonCansel;
     
-    public DialogDepartment() {
+    public DialogDepartment(String title) {
+        super.setTitle(title);
         department = new Department();
         configComponent = new UkrainianNameButton();
         configDialog();
@@ -49,10 +53,6 @@ public class DialogDepartment extends JDialog{
         add(createPanelError(), BorderLayout.NORTH);
         add(createContentPanel(), BorderLayout.CENTER);
         add(createButtonPanel(), BorderLayout.SOUTH);
-        pack();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
     }
 
     private JPanel createPanelError(){
@@ -113,9 +113,17 @@ public class DialogDepartment extends JDialog{
 
     public void setDepartment(Department department) {
         this.department = department;
+        textFieldNameDepartment.setText(department.getDepartmentName());
+        action = EnumAction.UPDATE;
     }
     
     public Department getDepartment() {
         return department;
     }
+
+    public EnumAction getAction() {
+        return action;
+    }
+    
+    
 }
