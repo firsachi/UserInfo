@@ -5,11 +5,11 @@
  */
 package userinfo.gui;
 
+import userinfo.gui.department.DialogDepartmentButtonOkActionListener;
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.print.DocFlavor;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
