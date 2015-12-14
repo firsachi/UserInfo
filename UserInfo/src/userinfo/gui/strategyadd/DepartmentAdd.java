@@ -13,8 +13,11 @@ public class DepartmentAdd implements ButtonAddStartegy{
 
     @Override
     public RowEntities add() {
-        DialogDepartment dialogDepartment = new DialogDepartment();
-        dialogDepartment.setTitle(title);
+        DialogDepartment dialogDepartment = new DialogDepartment(title);
+        dialogDepartment.pack();
+        dialogDepartment.setLocationRelativeTo(null);
+        dialogDepartment.setResizable(false);
+        dialogDepartment.setVisible(true);
         return dialogDepartment.getDepartment();
     }
 }
