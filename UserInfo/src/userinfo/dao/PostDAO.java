@@ -16,7 +16,8 @@ public interface PostDAO {
     
     Post create(Post post);
     Post find(int idPost);
+    boolean findName(String name);
     ArrayList<Post> findAll(boolean delete);
-    void delete(int idPost);
-    void update(Post post);
+    boolean delete(int idPost);
+    boolean update(Post post);
 }
