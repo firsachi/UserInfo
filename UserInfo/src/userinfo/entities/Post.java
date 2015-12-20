@@ -5,6 +5,7 @@ package userinfo.entities;
  */
 public class Post implements RowEntities{
 
+    private boolean flag = false;
     private int postID;
     private String postName;
     private boolean postUnique;
@@ -42,7 +43,17 @@ public class Post implements RowEntities{
 
     @Override
     public Object[] getRow() {
-        String[] rowData = new String[]{Integer.toString(postID), postName};
+        Object[] rowData = new Object[]{postID, postName};
         return rowData;
+    }
+
+    @Override
+    public void setUpdate(boolean update) {
+        this.flag = update;
+    }
+
+    @Override
+    public boolean getUpdate() {
+        return flag;
     }
 }
