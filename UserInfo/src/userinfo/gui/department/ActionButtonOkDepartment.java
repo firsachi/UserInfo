@@ -24,6 +24,8 @@ public class ActionButtonOkDepartment {
                 deaprtmentAdd.createDepartment(dialogDepartment);
                 break;
             case UPDATE:
+                DepartmentUpdate departmentUpdate = new DepartmentUpdate();
+                departmentUpdate.updateDepartment(dialogDepartment);
                 break;
         }
     }
