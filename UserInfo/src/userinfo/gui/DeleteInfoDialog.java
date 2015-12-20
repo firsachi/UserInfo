@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import toolsgui.ConfigComponentsGUI;
 import toolsgui.UkrainianNameButton;
+import userinfo.gui.delete.DeleteRow;
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 
 /**
@@ -26,14 +28,15 @@ public class DeleteInfoDialog extends JDialog{
     
     private final int id;
     private boolean resolveRemove = false;
-    
+    private final DeleteRow deleteRow;
     private JLabel labelInfo;
     private JButton buttonOk;
     private JButton buttonCansel;
     private final ConfigComponentsGUI configComponent = new UkrainianNameButton();
 
-    public DeleteInfoDialog(int id) {
+    public DeleteInfoDialog(int id, DeleteRow deleteRow) {
         this.id = id;
+        this.deleteRow = deleteRow;
         configDeleteDialog();
     }
     
@@ -71,7 +74,9 @@ public class DeleteInfoDialog extends JDialog{
 
     private JButton createButtonOk() {
         buttonOk = new JButton(configComponent.nameButtonOk());
-        buttonOk.addActionListener(new DeleteDialogButtonOkActionListenet(this));
+        deleteRow.setDeleteInfoDialog(this);
+        buttonOk.addActionListener(deleteRow);
+       // buttonOk.addActionListener(new DeleteDialogButtonOkActionListenet(this));
         return buttonOk;
     }
 
@@ -80,12 +85,11 @@ public class DeleteInfoDialog extends JDialog{
         buttonCansel.addActionListener(new ButtonCanselActionListener(this));
         return buttonCansel;
     }
-
+    
     public void setResolveRemove(boolean resolveRemove) {
         this.resolveRemove = resolveRemove;
     }
-
-    
+   
     public JLabel getLabelInfo() {
         return labelInfo;
     }
