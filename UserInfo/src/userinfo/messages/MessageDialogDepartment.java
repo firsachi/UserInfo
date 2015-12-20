@@ -13,7 +13,7 @@ public class MessageDialogDepartment implements MessageInfo{
 
     @Override
     public String nullMaessage() {
-        return "Назва відділу не повинна бути порожнім.";
+        return "Назва відділу не повинна бути порожньою.";
     }
 
     @Override
