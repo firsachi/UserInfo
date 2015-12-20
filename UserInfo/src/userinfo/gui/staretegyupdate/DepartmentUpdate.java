@@ -5,7 +5,9 @@
  */
 package userinfo.gui.staretegyupdate;
 
-import userinfo.entities.Department;
+
+import userinfo.dao.DaoFactory;
+import userinfo.dao.DepartmentDAO;
 import userinfo.entities.RowEntities;
 import userinfo.gui.DialogDepartment;
 
@@ -17,10 +19,11 @@ class DepartmentUpdate implements ButtonUpdateStarategy{
     
     private final String title = "Змінити назву відділу.";    
     @Override
-    public RowEntities getUpdateRow(Department department) {
+    public RowEntities getUpdateRow(int idValue) {
+        DaoFactory daoFactory = DaoFactory.getInstance(DaoFactory.DaoType.POSTGRESQL);
+        DepartmentDAO departmentDAO = daoFactory.createDepartmentDAO();
         DialogDepartment dialogDepartment = new DialogDepartment(title);
-        //dialogDepartment.setTitle(title);
-        dialogDepartment.setDepartment(department);
+        dialogDepartment.setDepartment(departmentDAO.find(idValue));
         dialogDepartment.pack();
         dialogDepartment.setLocationRelativeTo(null);
         dialogDepartment.setResizable(false);

@@ -6,7 +6,6 @@
 package userinfo.gui.staretegyupdate;
 
 import javax.swing.JTable;
-import userinfo.entities.Department;
 import userinfo.entities.RowEntities;
 import userinfo.gui.frameuser.EnumNameModel;
 import userinfo.gui.frameuser.tablemodel.TableModel;
@@ -17,6 +16,7 @@ import userinfo.gui.frameuser.tablemodel.TableModel;
  */
 public class StrategyUpdate {
     
+    private ButtonUpdateStarategy buttonUpdateStarategy;
     private RowEntities rowEntities;
 
     public StrategyUpdate() {
@@ -28,18 +28,16 @@ public class StrategyUpdate {
             case USER:
                 break;
             case POST:
+                buttonUpdateStarategy = new PostUpdate();
                 break;
             case DEPARTMENT:
-                Department department = new Department();
-                department.setIdDepartment((int) tableModel.getValueAt(table.getSelectedRow(), 0));
-                department.setDepartmentName((String)tableModel.getValueAt(table.getSelectedRow(), 1));
-                DepartmentUpdate departmentUpdate = new DepartmentUpdate();
-                rowEntities = departmentUpdate.getUpdateRow(department);
+                buttonUpdateStarategy = new DepartmentUpdate();
                 break;
         }
-        if (rowEntities != null){
-            
+        rowEntities = buttonUpdateStarategy.getUpdateRow((int) tableModel.getValueAt(table.getSelectedRow(), 0));
+        if (rowEntities.getUpdate()){
+            tableModel.updateRow(table.getSelectedRow(), rowEntities.getRow());
         }
     }
-    
+        
 }

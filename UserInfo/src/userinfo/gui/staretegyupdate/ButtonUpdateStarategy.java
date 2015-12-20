@@ -5,7 +5,6 @@
  */
 package userinfo.gui.staretegyupdate;
 
-import userinfo.entities.Department;
 import userinfo.entities.RowEntities;
 
 /**
@@ -14,5 +13,5 @@ import userinfo.entities.RowEntities;
  */
 public interface ButtonUpdateStarategy {
     
-    RowEntities getUpdateRow(Department department);
+    RowEntities getUpdateRow(int idValue);
 }
