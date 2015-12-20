@@ -11,11 +11,13 @@ package userinfo.gui.frameuser.tablemodel;
  */
 class PostNameColumn implements NameColumn {
 
-    @Override
-    public String[] getNAmeColumn() {
-        String[] nameColumn = new String[] {"Код","Найменування"};
-        return nameColumn;
+    public PostNameColumn() {
     }
 
-
+    @Override
+    public String[] getNAmeColumn() {
+        String[] nameColumn =new String[] {"Код","Найменування"};
+        return nameColumn;
+    }
+    
 }
