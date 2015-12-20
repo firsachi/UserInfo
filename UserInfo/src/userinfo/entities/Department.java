@@ -4,7 +4,8 @@ package userinfo.entities;
  * Created by firsov on 22.09.2015.
  */
 public class Department implements RowEntities{
-
+    
+    private boolean update = false;
     private int idDepartment;
     private String departmentName;
 
@@ -29,4 +30,15 @@ public class Department implements RowEntities{
         Object[] rowData = new Object[]{idDepartment, departmentName};
         return rowData;
     }
+
+    @Override
+    public void setUpdate(boolean update) {
+        this.update = update;
+    }
+
+    @Override
+    public boolean getUpdate() {
+        return update;
+    }
+
 }
