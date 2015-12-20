@@ -57,6 +57,8 @@ public class FrameUserInfo extends JFrame{
     }
     
     private void configFrame(){
+        ConfigFrameUserInfo configFrameUserInfo = new UkreinianConfigUserInfo();
+        setTitle(configFrameUserInfo.nameToggleButtonUser());
         setDefaultCloseOperation(FrameUserInfo.DISPOSE_ON_CLOSE);
         add(createPanelContent(), BorderLayout.CENTER);
         add(createPanelButton(), BorderLayout.SOUTH);
