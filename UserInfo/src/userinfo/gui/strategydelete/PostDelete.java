@@ -6,17 +6,17 @@
 package userinfo.gui.strategydelete;
 
 import userinfo.gui.DeleteInfoDialog;
-import userinfo.gui.delete.DeleteDialogButtonOkActionListenet;
 
 /**
  *
  * @author firsov
  */
-public class DepartmentDelete implements ButtonDeleteStrategy{
+public class PostDelete implements ButtonDeleteStrategy{
 
     @Override
     public boolean deleteRow(int id) {
-        DeleteInfoDialog deleteInfoDialog = new DeleteInfoDialog(id, new DeleteDialogButtonOkActionListenet());
+        DeleteInfoDialog deleteInfoDialog = new DeleteInfoDialog(id, new DeletePostDialogButtonOkActionListenet());
         return deleteInfoDialog.getResolveRemove();
-    }   
+    }
+    
 }

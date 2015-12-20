@@ -15,6 +15,7 @@ import userinfo.gui.frameuser.tablemodel.TableModel;
  */
 public class StrategyDelete {
     
+    private ButtonDeleteStrategy buttonDeleteStrategy;
     private final ContextStrategyDelete contextStrategyDelete;
 
     public StrategyDelete() {
@@ -28,13 +29,13 @@ public class StrategyDelete {
             case USER:
                 break;
             case POST:
+                buttonDeleteStrategy = new PostDelete();
                 break;
             case DEPARTMENT:
-                DepartmentDelete departmentDelete = new DepartmentDelete();
-                deleteTableRow = departmentDelete.deleteRow(id);
+                buttonDeleteStrategy = new DepartmentDelete();
                 break;
         }
-        if (deleteTableRow){
+        if (buttonDeleteStrategy.deleteRow(id)){
             tableModel.removeRow(table.getSelectedRow());
         }
         
