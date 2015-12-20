@@ -5,12 +5,13 @@
  */
 package userinfo.gui;
 
-import userinfo.gui.department.DialogDepartmentButtonOkActionListener;
+import userinfo.gui.delete.DialogDepartmentButtonOkActionListener;
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -64,14 +65,20 @@ public class DialogDepartment extends JDialog{
     }
     
     private JPanel createContentPanel() {
+        JPanel panelComponent = new JPanel();
+        panelComponent.setLayout(new BoxLayout(panelComponent, BoxLayout.PAGE_AXIS));
+        panelComponent.setBorder(BorderFactory.createEmptyBorder(borderSize, borderSize, borderSize, borderSize));
+        
         labelName = new JLabel("Найменування:");
         textFieldNameDepartment = new JTextField(configComponent.sizeTextField());
         textFieldNameDepartment.addKeyListener(new TextFiledKeyboardLisenter(this));
-     
-        JPanel panelComponent = new JPanel();
-        panelComponent.setBorder(BorderFactory.createEmptyBorder(borderSize, borderSize, borderSize, borderSize));
-        panelComponent.add(labelName);
-        panelComponent.add(textFieldNameDepartment);
+    
+        JPanel panelGrid = new JPanel();
+        panelGrid.setLayout(new GridLayout(0, 2, 5, 2));
+        panelGrid.add(labelName);
+        panelGrid.add(textFieldNameDepartment);
+        panelComponent.add(panelGrid);
+              
         return panelComponent;
     }
 
@@ -100,7 +107,7 @@ public class DialogDepartment extends JDialog{
     }
 
     public String getTextFieldNameDepartment() {
-        return textFieldNameDepartment.getText();
+        return textFieldNameDepartment.getText().trim();
     }
 
     public JLabel getLabelName() {
