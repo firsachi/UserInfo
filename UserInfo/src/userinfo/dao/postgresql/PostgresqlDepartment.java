@@ -48,7 +48,9 @@ public class PostgresqlDepartment implements DepartmentDAO{
         {   
             preparedStatement.setInt(1, idDepartment);
             ResultSet resultSet = preparedStatement.executeQuery();
-            department = createNewDeaprtment(resultSet);
+            if (resultSet.next()){
+                department = createNewDeaprtment(resultSet);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PostgresqlDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +82,6 @@ public class PostgresqlDepartment implements DepartmentDAO{
                 PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);
                 )
         {
-            //prepareCall(query);
             preparedStatement.setInt(1, idDepartment);
             preparedStatement.setInt(2, idDepartment);
             int res = preparedStatement.executeUpdate();
@@ -97,22 +98,28 @@ public class PostgresqlDepartment implements DepartmentDAO{
     }
 
     @Override
-    public void update(Department department) {
-        String query ="UPDATE department SET name_department=? WHERE id_department=?";
-        try (
-                PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);
-                ){
+    public boolean update(Department department) {
+        boolean result = false;
+        String query ="UPDATE department SET name_department=? WHERE id_department=? AND delete_department=false AND 0=(SELECT COUNT(*) FROM department WHERE id_department!=? AND name_department=? AND delete_department=false )";
+        try (PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);)
+        {
             preparedStatement.setString(1, department.getDepartmentName());
             preparedStatement.setInt(2, department.getIdDepartment());
-            preparedStatement.executeQuery();
+            preparedStatement.setInt(3, department.getIdDepartment());
+            preparedStatement.setString(4, department.getDepartmentName());
+            int res = preparedStatement.executeUpdate();
+            if (0 < res){
+                result = true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PostgresqlDepartment.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     @Override
     public boolean findName(Department department){
-        String query = "SELECT COUNT(*) FROM department WHERE name_department=?";
+        String query = "SELECT COUNT(*) FROM department WHERE name_department=? AND delete_department=false";
         boolean resultFind = true;
         try (PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);) 
         {
