@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by firsov on 12.09.15.
  */
 public class Users implements RowEntities{
-
+    private boolean flag = false;
     private final String[] nameComponent={"idUsers","nameUsers","surnameUser","patronymicUsers","loginUsers","passwordUser","emailUsers","departmentUsers","postUsers"};
     private final Map userMap=new HashMap<String, String>();
 
@@ -93,6 +93,16 @@ public class Users implements RowEntities{
         };
         
         return rowData;
+    }
+
+    @Override
+    public void setUpdate(boolean update) {
+        this.flag = update;
+    }
+
+    @Override
+    public boolean getUpdate() {
+        return flag;
     }
 
 }
