@@ -15,6 +15,12 @@ public class TableModel extends DefaultTableModel {
         return false;
     }
 
+    public void updateRow(int numberRow, Object[] dataObject){
+        for (int index=0; dataObject.length > index; index++){
+            setValueAt(dataObject[index], numberRow, index);
+        }
+    }
+    
     public void clearTableModel(){
         TableModel.this.setColumnCount(0);
         while (TableModel.this.getRowCount() > 0){
