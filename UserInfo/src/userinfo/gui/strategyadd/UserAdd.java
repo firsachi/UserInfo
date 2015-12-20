@@ -11,6 +11,4 @@ public class UserAdd implements ButtonAddStartegy{
     public RowEntities add() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 }

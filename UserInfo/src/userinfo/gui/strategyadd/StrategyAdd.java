@@ -22,7 +22,8 @@ public class StrategyAdd {
                
                 break;
             case POST :
-                
+                PostAdd postAdd = new PostAdd();
+                rowEntities = postAdd.add();
                 break;
             case DEPARTMENT :
                 DepartmentAdd departmentAdd = new DepartmentAdd();
