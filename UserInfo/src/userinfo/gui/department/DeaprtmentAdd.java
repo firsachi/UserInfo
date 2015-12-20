@@ -30,6 +30,7 @@ class DeaprtmentAdd {
             dialogDepartment.getLabelName().setText("<HTML><FONT color=\"red\">"+ dialogDepartment.getLabelName().getText() );
         }else if (departmentDAO.findName(department)) {
             dialogDepartment.setDepartment(departmentDAO.create(department));
+            dialogDepartment.getDepartment().setUpdate(true);
             dialogDepartment.dispose();
         }else{
             dialogDepartment.getLabelError().setText("<HTML><FONT color=\"red\">" + messageInfo.thereIs());
