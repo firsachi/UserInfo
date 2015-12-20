@@ -8,7 +8,9 @@ package userinfo.gui.lisenters;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import userinfo.gui.FrameUserInfo;
+import userinfo.gui.frameuser.ConfigFrameUserInfo;
 import userinfo.gui.frameuser.EnumNameModel;
+import userinfo.gui.frameuser.UkreinianConfigUserInfo;
 import userinfo.gui.frameuser.tablemodel.FillTableModel;
 
 /**
@@ -18,6 +20,7 @@ import userinfo.gui.frameuser.tablemodel.FillTableModel;
 public class ToggleButtonUserActionListener implements ActionListener{
 
     private final FrameUserInfo frameUserInfo;
+    private final ConfigFrameUserInfo configFrameUserInfo = new UkreinianConfigUserInfo();
     
     public ToggleButtonUserActionListener(FrameUserInfo frameUserInfo) {
         this.frameUserInfo = frameUserInfo;
@@ -28,6 +31,7 @@ public class ToggleButtonUserActionListener implements ActionListener{
         frameUserInfo.setNameModel(EnumNameModel.USER);
         FillTableModel filltable = new FillTableModel();
         filltable.fillTable(frameUserInfo.getTableModelFrame(), frameUserInfo.getNameModel(), false);
+        frameUserInfo.setTitle(configFrameUserInfo.nameToggleButtonUser());
         frameUserInfo.selectRowTable();
     }
     
