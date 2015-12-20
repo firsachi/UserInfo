@@ -11,5 +11,7 @@ package userinfo.entities;
  */
 public interface RowEntities {
     
+    void setUpdate(boolean update);
+    boolean getUpdate();
     Object[] getRow();
 }
