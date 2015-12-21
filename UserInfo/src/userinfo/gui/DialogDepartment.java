@@ -5,7 +5,6 @@
  */
 package userinfo.gui;
 
-import userinfo.gui.delete.DialogDepartmentButtonOkActionListener;
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -21,6 +20,7 @@ import toolsgui.ConfigComponentsGUI;
 import toolsgui.UkrainianNameButton;
 import userinfo.entities.Department;
 import userinfo.entities.EnumAction;
+import userinfo.gui.department.DialogDepartmentButtonOkActionListener;
 
 /**
  *
