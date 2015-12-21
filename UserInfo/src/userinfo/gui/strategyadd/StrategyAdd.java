@@ -19,7 +19,8 @@ public class StrategyAdd {
     public void result( TableModel tableModel, EnumNameModel nameModel){
         switch (nameModel){
             case USER :
-               
+                UserAdd userAdd = new UserAdd();
+                rowEntities = userAdd.add();
                 break;
             case POST :
                 PostAdd postAdd = new PostAdd();
