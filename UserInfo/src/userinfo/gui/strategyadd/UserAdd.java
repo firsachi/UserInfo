@@ -2,7 +2,6 @@ package userinfo.gui.strategyadd;
 
 import userinfo.entities.RowEntities;
 import userinfo.gui.Employee;
-
 /**
  * Created by firsov on 01.10.2015.
  */
