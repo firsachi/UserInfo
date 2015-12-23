@@ -34,7 +34,7 @@ public class PostgresqlUsers implements UsersDAO{
     @Override
     public ArrayList<Users> findAll(boolean delete) {
         ArrayList<Users> arrayListUsers = new ArrayList<>();
-        String query = "SELECT id_users,name_users,surname_users,patronymic_users,login_users,password_users,email_users,name_department,name_post,access_users FROM users JOIN department ON (users.id_department=department.id_department) JOIN post ON (users.id_post=post.id_post) WHERE delete_users=?";
+        String query = "SELECT id_users,name_users,surname_users,patronymic_users,login_users,password_users,email_users,name_department,name_post FROM users JOIN department ON (users.id_department=department.id_department) JOIN post ON (users.id_post=post.id_post) WHERE delete_users=?";
         try (PreparedStatement preparedStatement = ReceiveConnect.getConnectionDatabase().prepareStatement(query);)
         {
             preparedStatement.setBoolean(1, delete);
