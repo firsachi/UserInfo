@@ -28,9 +28,20 @@ public class ComboBoxDepartment extends JComboBox<Object>{
 
     private void createCombobox() {
         for (Department department : arrayListDeaprtment){
-            addItem(department.getDepartmentName());
+            addItem(department);
         }
     }
     
+    public void addElement(Department department){
+        if (department.getUpdate()){
+            arrayListDeaprtment.add(department);
+            addItem(department);
+            setSelectedItem(department.getDepartmentName());
+        }
+    }
+    
+    private void addItem(Department department){
+        addItem(department.getDepartmentName());
+    }
     
 }
