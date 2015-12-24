@@ -20,7 +20,11 @@ import javax.swing.JTextField;
 import toolsgui.ConfigComponentsGUI;
 import toolsgui.ResizeComponentsFrame;
 import toolsgui.UkrainianNameButton;
+import userinfo.gui.department.ComboBoxDepartment;
+import userinfo.gui.employee.ButtonAddDepartmentEmployeeActionLIstener;
+import userinfo.gui.employee.ButtonAddPostEmployeeActionListener;
 import userinfo.gui.lisenters.ButtonCanselActionListener;
+import userinfo.gui.post.ComboBoxPost;
 
 /**
  *
@@ -35,7 +39,7 @@ public class Employee extends JDialog{
     private JLabel labelLogin;
     private JLabel labelPassword;
     private JLabel labelEmail;
-    private JLabel labelDeaprtment;
+    private JLabel labelDepartment;
     private JLabel labelPost;
     
     private final int textFieldSize = 25;
@@ -49,9 +53,16 @@ public class Employee extends JDialog{
     private JTextField textFieldPassword;
     private JTextField textFieldEmail;
     
+    private ComboBoxDepartment comboBoxDepartment;
+    private ComboBoxPost comboBoxPost;
+    
     private JPanel panelPass;
+    private JPanel panelDeparmentEntities;
+    private JPanel panelPostEntities;
     
     private JButton buttonGenPass;
+    private JButton buttonAddDepartment;
+    private JButton buttonAddPost;
     private final ConfigComponentsGUI configComponentsGUI;
     private JButton buttonOk;
     private JButton buttonCansel;
@@ -93,9 +104,13 @@ public class Employee extends JDialog{
         panelContent.add(createPanelPassword());       
         panelContent.add(Box.createVerticalStrut(verticalStrut));
         panelContent.add(createPanelEmail());
+        panelContent.add(Box.createVerticalStrut(verticalStrut));
+        panelContent.add(createPanelDepartment());
+        panelContent.add(Box.createVerticalStrut(verticalStrut));
+        panelContent.add(createPanelPost());
         ResizeComponentsFrame resizeComponentsFrame = new ResizeComponentsFrame();
-        resizeComponentsFrame.sizeComponents(labelSurname, labelName, labelPatronymic, labelLogin, labelPassword, labelEmail);
-        resizeComponentsFrame.sizeComponents(textFieldEmail, textFieldLogin , textFieldName, textFieldSurname, textFieldPatronymic, textFieldPatronymic, panelPass);
+        resizeComponentsFrame.sizeComponents(labelSurname, labelName, labelPatronymic, labelLogin, labelPassword, labelEmail, labelDepartment, labelPost);
+        resizeComponentsFrame.sizeComponents(textFieldEmail, textFieldLogin , textFieldName, textFieldSurname, textFieldPatronymic, textFieldPatronymic, panelPass, panelDeparmentEntities, panelPostEntities);
         return panelContent;
     }
     
@@ -170,6 +185,38 @@ public class Employee extends JDialog{
         return panelEmail;
     }
     
+    private Component createPanelDepartment(){
+        labelDepartment = new JLabel("Відділ");
+        labelDepartment.setHorizontalAlignment(JLabel.RIGHT);
+        comboBoxDepartment = new ComboBoxDepartment();
+        buttonAddDepartment = new JButton("+");
+        buttonAddDepartment.addActionListener(new ButtonAddDepartmentEmployeeActionLIstener(this));
+        panelDeparmentEntities = createLinePanel();
+        panelDeparmentEntities.add(comboBoxDepartment);
+        panelDeparmentEntities.add(buttonAddDepartment);
+        JPanel panelDepartment = createLinePanel();
+        panelDepartment.add(labelDepartment);
+        panelDepartment.add(Box.createHorizontalStrut(horizontalStrut));
+        panelDepartment.add(panelDeparmentEntities);
+        return panelDepartment;
+    }
+    
+    private Component createPanelPost(){
+        labelPost = new JLabel("Посада");
+        labelPost.setHorizontalAlignment(JLabel.RIGHT);
+        comboBoxPost = new ComboBoxPost();
+        buttonAddPost = new JButton("+");
+        buttonAddPost.addActionListener(new ButtonAddPostEmployeeActionListener(this));
+        panelPostEntities = createLinePanel();
+        panelPostEntities.add(comboBoxPost);
+        panelPostEntities.add(buttonAddPost);
+        JPanel panelPost = createLinePanel();
+        panelPost.add(labelPost);
+        panelPost.add(Box.createHorizontalStrut(horizontalStrut));
+        panelPost.add(panelPostEntities);
+        return panelPost;
+    }
+    
     private Component createButtonPanel() {
         buttonOk = new JButton(configComponentsGUI.nameButtonOk());
         
@@ -193,5 +240,13 @@ public class Employee extends JDialog{
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
         return panel;
+    }
+
+    public ComboBoxDepartment getComboBoxDEpartment() {
+        return comboBoxDepartment;
+    }
+    
+    public ComboBoxPost getComboBoxPost(){
+        return comboBoxPost;
     }
 }
