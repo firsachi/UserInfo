@@ -31,6 +31,14 @@ public class ComboBoxPost extends JComboBox<Object>{
             addItem(post.getPostName());
         }
     }
+
+    public void addElement(Post post) {
+        if (post.getUpdate()){
+            arrayListPost.add(post);
+            addItem(post.getPostName());
+            setSelectedItem(post.getPostName());
+        }
+    }
     
     
 }
