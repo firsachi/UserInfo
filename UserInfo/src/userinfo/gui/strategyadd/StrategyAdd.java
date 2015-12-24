@@ -10,6 +10,7 @@ import userinfo.gui.frameuser.tablemodel.TableModel;
 
 public class StrategyAdd {
   
+    private ButtonAddStartegy buttonAddStartegy;
     private RowEntities rowEntities;
     
     public StrategyAdd(){
@@ -19,19 +20,17 @@ public class StrategyAdd {
     public void result( TableModel tableModel, EnumNameModel nameModel){
         switch (nameModel){
             case USER :
-                UserAdd userAdd = new UserAdd();
-                rowEntities = userAdd.add();
+                buttonAddStartegy = new UserAdd();
                 break;
             case POST :
-                PostAdd postAdd = new PostAdd();
-                rowEntities = postAdd.add();
+                buttonAddStartegy = new PostAdd();
                 break;
             case DEPARTMENT :
-                DepartmentAdd departmentAdd = new DepartmentAdd();
-                rowEntities = departmentAdd.add();
+                buttonAddStartegy = new DepartmentAdd();
                 break;
         }
-        if (rowEntities != null){
+        rowEntities = buttonAddStartegy.add();
+        if (rowEntities.getUpdate()){
             tableModel.addRow(rowEntities.getRow());
         }
     }
