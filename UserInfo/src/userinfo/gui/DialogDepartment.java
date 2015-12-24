@@ -7,9 +7,11 @@ package userinfo.gui;
 
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import toolsgui.ConfigComponentsGUI;
+import toolsgui.ResizeComponentsFrame;
 import toolsgui.UkrainianNameButton;
 import userinfo.entities.Department;
 import userinfo.entities.EnumAction;
@@ -37,6 +40,7 @@ public class DialogDepartment extends JDialog{
     
     private final ConfigComponentsGUI configComponent;
     private final int borderSize = 12;
+    private final int horizontalStrut = 6;
     
     private JButton buttonOk;
     private JButton buttonCansel;
@@ -67,21 +71,29 @@ public class DialogDepartment extends JDialog{
     private JPanel createContentPanel() {
         JPanel panelComponent = new JPanel();
         panelComponent.setLayout(new BoxLayout(panelComponent, BoxLayout.PAGE_AXIS));
-        panelComponent.setBorder(BorderFactory.createEmptyBorder(borderSize, borderSize, borderSize, borderSize));
-        
-        labelName = new JLabel("Найменування:");
-        textFieldNameDepartment = new JTextField(configComponent.sizeTextField());
-        textFieldNameDepartment.addKeyListener(new TextFiledKeyboardLisenter(this));
-    
-        JPanel panelGrid = new JPanel();
-        panelGrid.setLayout(new GridLayout(0, 2, 5, 2));
-        panelGrid.add(labelName);
-        panelGrid.add(textFieldNameDepartment);
-        panelComponent.add(panelGrid);
-              
+        panelComponent.setBorder(BorderFactory.createEmptyBorder(0, borderSize, borderSize, borderSize));
+        panelComponent.add(createPanelName());
+        ResizeComponentsFrame resizeComponentsFrame = new ResizeComponentsFrame();
+        resizeComponentsFrame.sizeComponents(labelName);
+        resizeComponentsFrame.sizeComponents(textFieldNameDepartment);
         return panelComponent;
     }
-
+    
+    private Component createPanelName(){
+        labelName = new JLabel("Найменування:");
+        labelName.setHorizontalAlignment(JLabel.RIGHT);
+        
+        textFieldNameDepartment = new JTextField(configComponent.sizeTextField());
+        textFieldNameDepartment.addKeyListener(new TextFiledKeyboardLisenter(this));
+        
+        JPanel panelName = new JPanel();
+        panelName.setLayout(new BoxLayout(panelName, BoxLayout.LINE_AXIS));
+        panelName.add(labelName);
+        panelName.add(Box.createHorizontalStrut(horizontalStrut));
+        panelName.add(textFieldNameDepartment);
+        return panelName;
+    }
+    
     private JPanel createButtonPanel() {
         JPanel panelGrid = new JPanel();
         panelGrid.setLayout(new  GridLayout(1,0,5,2));
@@ -89,6 +101,7 @@ public class DialogDepartment extends JDialog{
         panelGrid.add(createButtonCansel());
         JPanel panelButton = new JPanel();
         panelButton.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        panelButton.setBorder(BorderFactory.createEmptyBorder(0, borderSize, borderSize, borderSize));
         panelButton.add(panelGrid);
         return panelButton;
     }
