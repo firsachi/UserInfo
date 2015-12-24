@@ -68,7 +68,7 @@ public class DialogLogin extends JDialog{
         panelContent.add(Box.createVerticalStrut(verticalStrut));
         panelContent.add(panelPassword());
         ResizeComponentsFrame resizeComponentsFrame = new ResizeComponentsFrame();
-        ResizeComponentsFrame.sizeComponents(labelLogin,labelPassword);
+        resizeComponentsFrame.sizeComponents(labelLogin,labelPassword);
         return panelContent;
     }
 
