@@ -6,9 +6,12 @@
 package userinfo.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -16,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import toolsgui.ConfigComponentsGUI;
+import toolsgui.ResizeComponentsFrame;
 import toolsgui.UkrainianNameButton;
 import userinfo.entities.EnumAction;
 import userinfo.entities.Post;
@@ -35,6 +39,8 @@ public class DialogPost extends JDialog{
 
     private JTextField textFieldPostName;
     private final int textFieldSize = 20;
+    private final int horizontalStrut = 6;
+    private final int verticalStrut = 2;
 
     private JCheckBox checkBoxUnique;
 
@@ -75,22 +81,43 @@ public class DialogPost extends JDialog{
     
     private JPanel creteContentPanel() {
         JPanel panelContent = new JPanel();
-        panelContent.setLayout(new GridLayout(2, 2, 6, 6));
+        panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.PAGE_AXIS));
         panelContent.setBorder(BorderFactory.createEmptyBorder(borderSizeNull, borderSize, borderSize, borderSize));
-        
+        panelContent.add(createPanelName());
+        panelContent.add(Box.createVerticalStrut(verticalStrut));
+        panelContent.add(createPanelUnique());
+        ResizeComponentsFrame resizeComponentsFrame = new ResizeComponentsFrame();
+        resizeComponentsFrame.sizeComponents(labelName, labelUnique);
+        resizeComponentsFrame.sizeComponents(textFieldPostName, checkBoxUnique);
+        return panelContent;
+    }
+    
+    private Component createPanelName(){
         labelName = new JLabel("Найменування:");
-        panelContent.add(labelName);
+        labelName.setHorizontalAlignment(JLabel.RIGHT);
         
         textFieldPostName = new JTextField(textFieldSize);
-        panelContent.add(textFieldPostName);
         
+        JPanel panelName = new JPanel();
+        panelName.setLayout(new BoxLayout(panelName, BoxLayout.LINE_AXIS));
+        panelName.add(labelName);
+        panelName.add(Box.createHorizontalStrut(horizontalStrut));
+        panelName.add(textFieldPostName);
+        return panelName;
+    }
+    
+    private Component createPanelUnique(){
         labelUnique = new JLabel("Посада для однієї людини:");
-        panelContent.add(labelUnique);
+        labelUnique.setHorizontalAlignment(JLabel.RIGHT);
         
         checkBoxUnique = new JCheckBox();
-        panelContent.add(checkBoxUnique);
         
-        return panelContent;
+        JPanel panelUnique = new JPanel();
+        panelUnique.setLayout(new BoxLayout(panelUnique, BoxLayout.LINE_AXIS));
+        panelUnique.add(labelUnique);
+        panelUnique.add(Box.createHorizontalStrut(horizontalStrut));
+        panelUnique.add(checkBoxUnique);
+        return panelUnique;
     }
 
     private JPanel createButtonPanel() {
