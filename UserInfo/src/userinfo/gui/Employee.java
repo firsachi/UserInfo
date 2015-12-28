@@ -20,9 +20,11 @@ import javax.swing.JTextField;
 import toolsgui.ConfigComponentsGUI;
 import toolsgui.ResizeComponentsFrame;
 import toolsgui.UkrainianNameButton;
+import userinfo.entities.Users;
 import userinfo.gui.department.ComboBoxDepartment;
 import userinfo.gui.employee.ButtonAddDepartmentEmployeeActionLIstener;
 import userinfo.gui.employee.ButtonAddPostEmployeeActionListener;
+import userinfo.gui.employee.ButtonOkEmployeeActionListener;
 import userinfo.gui.lisenters.ButtonCanselActionListener;
 import userinfo.gui.post.ComboBoxPost;
 
@@ -66,6 +68,8 @@ public class Employee extends JDialog{
     private final ConfigComponentsGUI configComponentsGUI;
     private JButton buttonOk;
     private JButton buttonCansel;
+    
+    private Users users;
     
     public Employee() {
         configComponentsGUI = new UkrainianNameButton();
@@ -219,6 +223,7 @@ public class Employee extends JDialog{
     
     private Component createButtonPanel() {
         buttonOk = new JButton(configComponentsGUI.nameButtonOk());
+        buttonOk.addActionListener(new ButtonOkEmployeeActionListener(this));
         
         buttonCansel = new JButton(configComponentsGUI.nameButtonCansel());
         buttonCansel.addActionListener(new ButtonCanselActionListener((JDialog) this));
@@ -248,5 +253,16 @@ public class Employee extends JDialog{
     
     public ComboBoxPost getComboBoxPost(){
         return comboBoxPost;
+    }
+
+    public Users getUsers() {
+        users = new Users();
+        users.setNameUsers(textFieldName.getText());
+        users.setSurnameUser(textFieldSurname.getText());
+        users.setPatronymicUsers(textFieldPatronymic.getText());
+        users.setLoginUsers(textFieldLogin.getText());
+        users.setPaswordUsers(textFieldPassword.getText());
+        users.setEmailUsers(textFieldEmail.getText());
+        return users;
     }
 }
